@@ -1,0 +1,42 @@
+#!/usr/bin/env zsh
+
+function zsh_add_file(){
+	[ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
+}
+
+function zsh_add_plugin(){
+	PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+	[ ! -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ] && git clone "https://hub.fastgit.org/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+	zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
+	zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
+}
+
+function zsh_apply_theme(){
+    # Use all-in-one theme engine: oh-my-posh
+    THEME_ENGINE=${ZDOTDIR}/themes/oh-my-posh
+    THEME_DIR=${ZDOTDIR}/themes/poshthemes
+
+    if [ ! -d ${THEME_DIR} ]; then
+        mkdir -p ${THEME_DIR}
+        wget -q https://hub.fastgit.org/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O themes.zip
+        unzip themes.zip -d ${THEME_DIR}
+        chmod u+rw ${THEME_DIR}/*.json
+        rm themes.zip
+    fi
+
+    if [ ! -f ${THEME_ENGINE} ]; then
+        wget -q https://hub.fastgit.org/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O ${THEME_ENGINE}
+        chmod +x ${THEME_ENGINE}
+    fi
+
+    eval "$(${ZDOTDIR}/themes/oh-my-posh --init --shell zsh --config ${ZDOTDIR}/themes/poshthemes/negligible.omp.json)"
+}
+
+function list_poshthemes(){
+    for file (${ZDOTDIR}/themes/poshthemes/*.omp.json); do
+        echo "================================="
+        echo ${file} | awk -F / '{print $NF}' | awk -F . '{print $1,":"}'
+        eval "${ZDOTDIR}/themes/oh-my-posh --config ${file} --shell universal"
+        echo "<type here>"
+    done
+}

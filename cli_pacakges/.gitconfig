@@ -1,0 +1,22 @@
+[user]
+	email = hk451284087@gmail.com
+	name = Kun.HK.Huang
+
+[alias]
+	# commit alias
+	c = commit -s
+	ca = commit -as
+	cad = commit --amend -s
+	# branch alias
+	br = branch
+	bra = branch -a
+	# Other alias
+	s = status
+	pl = pull
+	ps = push
+	rs = restore --staged
+
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main

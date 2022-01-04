@@ -1,0 +1,31 @@
+#!/usr/bin/env zsh
+
+alias ls='ls -h --color=auto'
+if type exa &> /dev/null; then
+	# replace ls with exa(new genration command to show files)
+	alias l='exa --icons --group-directories-first --sort extension'
+	alias ll='l -l'
+	alias la='l -la'
+	alias tree='la -T'
+else
+	alias ll='ls -l'		# show directory and file with list
+	alias la='ls -la'
+fi
+
+alias vim='nvim'
+alias ev='nvim ~/.config/nvim/lua'
+alias ez="nvim ~/.config/zsh +'Telescope find_files'"	# edit zsh configuration
+alias sz='exec zsh'		# source zsh configuration
+
+alias mirror="sudo reflector --age 6 \
+                             --latest 20 \
+                             --fastest 20 \
+                             --threads 20 \
+                             --sort rate \
+                             --protocol https \
+                             --save /etc/pacman.d/mirrorlist"
+alias upa="mirror -c China ; paru -Syyu --skipreview --noconfirm"
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."

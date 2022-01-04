@@ -1,0 +1,8 @@
+nodejs
+npm
+yarn
+cmake
+go
+rust
+julia
+miniconda3

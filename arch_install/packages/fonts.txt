@@ -1,0 +1,12 @@
+fcitx5-im
+fcitx5-chinese-addons
+fcitx5-rime
+fcitx5-pinyin-zhwiki-rime
+nerd-fonts-meslo-lg
+wqy-zenhei
+nerd-fonts-source-code-pro
+adobe-source-code-pro-fonts
+ttf-fira-code
+nerd-fonts-fira-code
+ttf-font-awesome-4
+ttf-font-awesome

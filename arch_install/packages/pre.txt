@@ -1,0 +1,16 @@
+zsh
+grub
+os-prober
+ntfs-3g
+efibootmgr
+curl
+wget
+net-tools
+xclip
+paru
+openssh
+stow
+xorg
+xorg-xinit
+awesome
+qtile

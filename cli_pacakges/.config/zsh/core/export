@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+HISTSIZE=10000
+SAVEHIST=10000
+
+EDITOR="nvim"
+
+XDG_CONFIG_HOME="${HOME}/.config"
+PATH="$PATH:$HOME/.local/bin"

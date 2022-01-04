@@ -1,0 +1,66 @@
+# 设置 tab-size 为 4，默认为 8
+set tab-size = 4
+set line-graphics = utf-8
+
+#设置屏方式，如果没有设置则表示default值，他会更加显示器的情况进行分屏，ture表示竖向分屏，false表示横向分屏
+set vertical-split = false
+set split-view-height = 90%
+
+# 搜索的时候忽略大小写
+set ignore-case = true
+
+set wrap-lines = true
+set focus-child = true
+
+
+# 重设 main-view，增加 commit Id 信息
+set main-view = date:default \
+                author:email-user \
+                id:yes,color \
+                line-number:yes,interval=1 \
+                commit-title:refs=yes,overflow=no,graph=yes \
+
+
+
+# 重设 tree-view 界面
+set tree-view = date:default author:full id:yes,color \
+                        line-number:no,interval=1 \
+                        mode file-size:units,width=0 \
+                        file-name
+
+# # Configure blame view columns using command spanning multiple lines.
+ set blame-view = \
+        date:default \
+        author:full \
+        file-name:false \
+        id:yes,color \
+        line-number:yes,interval=1 text
+
+
+set commit-order = topo         # Order commits topologically
+set git-colors = no             # Do not read Git's color settings.
+set horizontal-scroll = 33%     # Scroll 33% of the view width
+set blame-options = -C -C -C    # Blame lines from other files
+
+# Wrap branch names with () and tags with <>
+# set reference-format = (branch) <tag>
+#
+# Override the default terminal colors to white on black.
+# Diff colors
+color diff-header       yellow  default
+color diff-index        blue    default
+color diff-chunk        magenta default
+color "Reported-by:"    green   default
+# View specific color
+color tree.date         black   cyan    bold
+
+#
+#                  # Change grep view to be similar to `git grep` format
+set grep-view = file-name:yes line-number:yes,interval=1 text
+
+#
+#                                  # Show line numbers for every 10th line in the pager view
+set pager-view = line-number:yes,interval=1 text
+#
+#  Use Git's default commit order, even when the commit graph is enabled.
+set commit-order = default
