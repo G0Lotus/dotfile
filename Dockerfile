@@ -13,13 +13,15 @@ ENV UID="1000" \
 
 # Base Env
 ARG BASE_PKGS="git sudo base base-devel tig tmux zsh paru"
-RUN sed -i "s/#Para/Para/" /etc/pacman.conf \
+RUN sed -i "33a ParallelDownloads = 5" /etc/pacman.conf \
 &&  echo "[archlinuxcn]" >> /etc/pacman.conf \
 &&  echo "Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/\$arch" >> /etc/pacman.conf \
 &&  pacman-key --init \
 &&  pacman-key --populate \
-&&  pacman -Syy --noconfirm archlinuxcn-keyring reflector \
 &&  iso=$(curl -4 ifconfig.co/country-iso) \
+&&  curl "https://archlinux.org/mirrorlist/?country=${iso}&protocol=http&protocol=https&ip_version=4" -o /etc/pacman.d/mirrorlist\
+&&  sed -i "s/#Server/Server/g" /etc/pacman.d/mirrorlist\
+&&  pacman -Sy --noconfirm archlinuxcn-keyring reflector \
 &&  reflector --age 6 --latest 20 --fastest 20 --threads 20 --sort rate --protocol https -c ${iso} --save ${PWD}/mirrorlist \
 &&  pacman -Syyu --needed --noconfirm ${BASE_PKGS} \
 &&  groupadd "${GNAME}" \
@@ -32,7 +34,7 @@ USER ${UNAME}
 COPY --chown=user:user cli_packages /home/user/.dotfile/cli_packages
 WORKDIR /home/user
 RUN cd .dotfile \
-&&  paru -S --skipreview --noconfirm stow su-exec \
+&&  paru -S --skipreview --noconfirm stow su-exec starship \
 &&  stow cli_packages \
 &&  cd \
 &&  exec zsh
