@@ -8,7 +8,8 @@ for file ($(ls ${ZDOTDIR}/core)) {
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 
-zsh_apply_theme
+#zsh_apply_theme
+eval "$(starship init zsh)"
 
 if type neofetch &> /dev/null; then
     neofetch

@@ -5,5 +5,6 @@ SAVEHIST=10000
 
 EDITOR="nvim"
 
-XDG_CONFIG_HOME="${HOME}/.config"
+export LC_ALL="en_US.UTF-8"
+export XDG_CONFIG_HOME="${HOME}/.config"
 PATH="$PATH:$HOME/.local/bin"
