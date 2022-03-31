@@ -9,7 +9,8 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 
 #zsh_apply_theme
-if [ ! type neofetch &> /dev/null]; then
+which starship &> /dev/null
+if [ $? -ne 0 ]; then
 	curl -sS https://starship.rs/install.sh | sh
 fi
 eval "$(starship init zsh)"
