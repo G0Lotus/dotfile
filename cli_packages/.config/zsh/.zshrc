@@ -7,6 +7,7 @@ for file ($(ls ${ZDOTDIR}/core)) {
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "Aloxaf/fzf-tab"
 
 #zsh_apply_theme
 which starship &> /dev/null
@@ -19,3 +20,5 @@ if type neofetch &> /dev/null; then
     neofetch
 fi
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
